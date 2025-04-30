@@ -14,10 +14,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { MoonIcon, SunIcon } from '@heroicons/vue/20/solid';
 
 const isDarkMode = ref(false);
+
+onMounted(() => {
+  const stored = localStorage.getItem('darkMode');
+  if (stored === 'true') {
+    isDarkMode.value = true;
+    document.documentElement.classList.add('dark');
+  }
+});
 
 function toggleDarkMode() {
   isDarkMode.value = !isDarkMode.value;

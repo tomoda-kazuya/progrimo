@@ -2,16 +2,8 @@
 // Layoutや他のコンポーネントのインポート
 import Layout from '../layouts/Layout.astro';
 import ReleaseDiffChart from '@/components/ReleaseDiffChart.vue';
-// import TicketChart from '@/components/TicketChart.vue';
 import ReleaseChart from '@/components/ReleaseChart.vue';
 import TicketList from '@/components/TicketList.vue';
-
-// ダミーデータ
-// const ticketData = [
-//   { label: 'チケットA', estimated: 5, actual: 4 },
-//   { label: 'チケットB', estimated: 8, actual: 7 },
-//   { label: 'チケットC', estimated: 6, actual: 6 },
-// ];
 
 const releaseData = [
   { label: 'リリース1', estimated: 50, actual: 48 },
@@ -29,7 +21,6 @@ const releaseData = [
   <section class="mb-8">
     <h3 class="text-xl font-semibold mb-4">リリース（予実差）</h3>
     <ReleaseDiffChart releaseData={releaseData} client:load />
-    <!-- <TicketChart ticketData={ticketData} client:load /> -->
     <ReleaseChart releaseData={releaseData} client:load />
   </section>
 

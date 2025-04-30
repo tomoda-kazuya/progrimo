@@ -4,9 +4,9 @@
       <h1 class="text-3xl font-bold">
         <a href="/" class="text-white">Progrimo</a>
       </h1>
-      <nav class="ml-auto">
+      <!-- <nav class="ml-auto">
         <a href="/todaytasks" class="text-white px-4 hover:text-opacity-70 transition-all">今日のタスク</a>
-      </nav>
+      </nav> -->
       <DarkModeToggle client:load />
     </div>
   </header>

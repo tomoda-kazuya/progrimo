@@ -23,18 +23,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import TaskTableRow from '@/components/TaskTableRow.vue';
+import axios from 'axios';
 
 const columns = ref([
-  { key: 'id', label: 'ID' },
   { key: 'title', label: 'タイトル' },
   { key: 'description', label: '内容' },
+  { key: 'priority', label: '優先度' },
+  { key: 'dueDate', label: '期限' },
 ]);
 
-const tasks = ref([
-  { id: 1, title: 'ミーティング準備', description: 'プレゼン資料を確認する' },
-  { id: 2, title: '開発作業', description: 'ログイン画面のバグ修正' },
-  { id: 3, title: 'コードレビュー', description: 'PR #42 を確認する' },
-]);
+const tasks = ref<Task[]>([]);
+
+interface Task {
+  id: number;
+  title: string;
+  description: string;
+}
+
+// APIからticketsを取得
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/tickets');
+    tasks.value = response.data as Task[];
+  } catch (error) {
+    console.error('Error fetching tickets:', error);
+  }
+});
 </script>

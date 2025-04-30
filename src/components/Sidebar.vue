@@ -23,8 +23,8 @@
 
       <SidebarSection
         :links="[
-          { label: 'チケット追加', href: 'ticket/add' },
-          { label: 'チケット一覧', href: 'ticket/list' },
+          { label: 'チケット追加', href: '/ticket/add' },
+          { label: 'チケット一覧', href: '/ticket/list' },
         ]"
         v-model:open="openSections.progress"
       >

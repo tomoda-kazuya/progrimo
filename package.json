@@ -3,7 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "concurrently \"npm run dev:front\" \"npm --prefix ./server run dev\"",
+    "dev:front": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -30,6 +31,7 @@
     "@types/unist": "^3.0.3",
     "astro": "^5.7.9",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.1.2",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.1"
   }

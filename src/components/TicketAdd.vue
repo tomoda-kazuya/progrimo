@@ -6,7 +6,11 @@
     <!-- フォーム -->
     <form @submit.prevent="submitForm">
       <div class="mb-4">
-        <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300">タイトル</label>
+        <label
+          for="title"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >タイトル</label
+        >
         <input
           v-model="ticket.title"
           type="text"
@@ -17,7 +21,11 @@
       </div>
 
       <div class="mb-4">
-        <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">詳細</label>
+        <label
+          for="description"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >詳細</label
+        >
         <textarea
           v-model="ticket.description"
           id="description"
@@ -28,7 +36,11 @@
       </div>
 
       <div class="mb-4">
-        <label for="priority" class="block text-sm font-medium text-gray-700 dark:text-gray-300">優先度</label>
+        <label
+          for="priority"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >優先度</label
+        >
         <select
           v-model="ticket.priority"
           id="priority"
@@ -42,7 +54,11 @@
       </div>
 
       <div class="mb-4">
-        <label for="dueDate" class="block text-sm font-medium text-gray-700 dark:text-gray-300">期限</label>
+        <label
+          for="dueDate"
+          class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >期限</label
+        >
         <input
           v-model="ticket.dueDate"
           type="date"
@@ -81,7 +97,10 @@ const ticket = ref({
 const submitForm = async () => {
   try {
     // POSTリクエストを送信
-    const response = await axios.post("http://localhost:3000/api/tickets", ticket.value);
+    const response = await axios.post(
+      "http://localhost:3000/api/v1/tickets",
+      ticket.value
+    );
     console.log("Ticket added:", response.data);
 
     // フォームリセット
@@ -93,7 +112,10 @@ const submitForm = async () => {
     };
 
     // フラッシュメッセージを設定（成功メッセージ）
-    flashMessage.value = { type: "success", message: "チケットが正常に追加されました。" };
+    flashMessage.value = {
+      type: "success",
+      message: "チケットが正常に追加されました。",
+    };
 
     // フラッシュメッセージを一定時間後に消す
     setTimeout(() => {
@@ -103,7 +125,10 @@ const submitForm = async () => {
     console.error("Error adding ticket:", error);
 
     // エラーメッセージをフラッシュメッセージに設定
-    flashMessage.value = { type: "error", message: "チケット追加に失敗しました。" };
+    flashMessage.value = {
+      type: "error",
+      message: "チケット追加に失敗しました。",
+    };
 
     // フラッシュメッセージを一定時間後に消す
     setTimeout(() => {
@@ -115,7 +140,9 @@ const submitForm = async () => {
 // 初期ロード時にフラッシュメッセージを取得する
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:3000/api/flash-message");
+    const response = await axios.get(
+      "http://localhost:3000/api/v1/flash-message"
+    );
     flashMessage.value = response.data as { type: string; message: string };
 
     setTimeout(() => {
